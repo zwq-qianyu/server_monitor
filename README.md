@@ -9,6 +9,9 @@
 
 
 ### 使用方法：
+首先导入 auto.sql 数据库或执行 create_monitor.sql 中的部分代码生成数据库。<br>
+然后需要对 settings 文件进行数据库配置。<br>
+最后：
 <img src="./source/use.png">
 
 ### 运行环境：
