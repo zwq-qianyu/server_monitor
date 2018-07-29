@@ -1,0 +1,4 @@
+{"cpu_percent": 15.4, "memory_percent": 75.3, "disk_percent": 75.4}
+{"cpu_percent": 14.5, "memory_percent": 75.2, "disk_percent": 75.4}
+{"cpu_percent": 13.0, "memory_percent": 75.7, "disk_percent": 75.4}
+{"cpu_percent": 16.9, "memory_percent": 75.6, "disk_percent": 75.4}

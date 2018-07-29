@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>监控中心-详情页</title>
+	<!-- 引入百度图表插件 -->
+	<script src="https://cdn.bootcss.com/echarts/4.0.3/echarts.min.js"></script>
+	<style type="text/css">
+		#header {
+			border: 1px solid;
+			padding: 10px 10px;
+			margin: 10px;
+		}
+		h3, h4 {
+			display: inline-block;
+			margin: 0px 10px;
+			cursor: pointer;
+		}
+		a {
+			text-decoration: none;
+			color: black;
+		}
+		#center_body {
+			margin: 40px 10px;
+		}
+		table {
+			float: left;
+			border-collapse: collapse;
+			width: 20%;
+		}
+		tr {
+			height: 40px;
+		}
+		table, td {
+			border: 1px solid black;
+		}
+		.echart {
+			display: inline-block;
+			width: 39%;
+			float: right;
+			height: 400px;
+			border: 1px dashed black;
+			margin: 0px 5px;
+		}
+		.clear_float {
+			clear: both;
+		}
+		.describle {
+			display: inline-block;
+			width: 39%;
+			float: right;
+			margin: 5px 5px;
+			text-align: center;
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<h3><a href="">监控中心</a></h3>
+		<h4><a href="{% url 'index' %}">首页</a></h4>
+		<h4><a href="">详情页</a></h4>
+	</div>
+	<div id="center_body">
+		<div id="left">
+			<table>
+				<tr><td>&nbsp;CPU:&nbsp;&nbsp;{{ cpu_percent }}%</td></tr>
+				<tr><td>&nbsp;内存:&nbsp;&nbsp;{{ vir_mem_used }}%</td></tr>
+				<tr><td>&nbsp;硬盘:&nbsp;&nbsp;{{ mem_used }}%</td></tr>
+			</table>
+		</div>
+		<div class="echart" id="vir_mem">
+			<!-- 百度图表页 -->
+			<script type="text/javascript">
+		        // 基于准备好的dom，初始化echarts实例
+		        var myChart = echarts.init(document.getElementById('vir_mem'));
+
+		        // 指定图表的配置项和数据
+		        var option = {
+				    xAxis: {
+				        type: 'category',
+				        data: []
+				    },
+				    yAxis: {
+				        type: 'value'
+				    },
+				    series: [{
+				        data: '{{ vir_mem_data }}',
+				        type: 'line',
+				    }]
+				};
+
+		        // 使用刚指定的配置项和数据显示图表。
+		        myChart.setOption(option);
+		    </script>
+		</div>
+		<div class="echart" id="mem">
+			<!-- 百度图表页 -->
+			<script type="text/javascript">
+				var cpu = '{{ cpu_data }}';
+				console.log(cpu);
+		        // 基于准备好的dom，初始化echarts实例
+		        var myChart = echarts.init(document.getElementById('mem'));
+
+		        // 指定图表的配置项和数据
+		        var option = {
+				    xAxis: {
+				        type: 'category',
+				        data: []
+				    },
+				    yAxis: {
+				        type: 'value'
+				    },
+				    series: [{
+				        data: '{{ cpu_data }}',
+				        type: 'line',
+				    }]
+				};
+
+		        // 使用刚指定的配置项和数据显示图表。
+		        myChart.setOption(option);
+		    </script>
+		</div>
+		<div class="clear_float"></div>
+		<div class="describle">
+			内存使用率
+		</div>
+		<div class="describle">
+			CPU使用率
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</body>
+</html>
