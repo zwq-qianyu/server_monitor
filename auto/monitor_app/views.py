@@ -90,7 +90,7 @@ def edit(request):
 def detail(request,gid):
     '''主机详情页'''
     context = loadinfo(request)
-    mo = Monitor.objects.get(host_id=gid)
+    mo = Monitor()
     ob = Host.objects.get(id=gid)
     # 远程主机上执行命令
     ssh = paramiko.SSHClient()
@@ -105,20 +105,21 @@ def detail(request,gid):
     cpu_str = re.findall(r'{.*?cpu_percent":.(.*?),.*?\n',strs)
     if cpu_str == []:
         cpu_str = re.findall(r'{.*?cpu_percent":.(.*?)}\n',strs)
-    print(cpu_str)
-    print(cpu_str[0])
-    cpu = [0,0,0,0,0,0,0,0,0,0]
-    for i in range(0, len(cpu_str)):
-        cpu[i] = float(cpu_str[i])
-    print(cpu)
+    cpu_percent = float(cpu_str[0])
+    # print(cpu_str)
+    # print(cpu_str[0])
+    print(cpu_percent)
     vir_mem_str = re.findall(r'{.*?memory_percent":.(.*?),.*?\n',strs)
     if vir_mem_str == []:
         vir_mem_str = re.findall(r'{.*?memory_percent":.(.*?)}\n',strs)
-    print(vir_mem_str)
-    vir_mem = [0,0,0,0,0,0,0,0,0,0]
-    for i in range(0, len(cpu_str)):
-        vir_mem[i] = float(vir_mem_str[i])
-    print(vir_mem)
+    vir_mem_percent = float(vir_mem_str[0])
+    print(vir_mem_percent)
+
+    disk_mem_str = re.findall(r'{.*?memory_percent":.(.*?),.*?\n',strs)
+    if disk_mem_str == []:
+        disk_mem_str = re.findall(r'{.*?memory_percent":.(.*?)}\n',strs)
+    dick_mem_percent = float(disk_mem_str[0])
+    print(dick_mem_percent)
 
     ssh.close()
 
@@ -128,11 +129,38 @@ def detail(request,gid):
     # mo.addtime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     # ob.save()
     # mo.save()
-    context['cpu_percent'] = cpu_str[4]
-    context['vir_mem_used'] = vir_mem_str[4]
-    context['mem_used'] = mo.mem_used
-    context['cpu_data'] = cpu
-    context['vir_mem_data'] = vir_mem
+    mo.cpu_used = cpu_percent
+    mo.vir_mem_used = vir_mem_percent
+    mo.mem_used = dick_mem_percent
+    mo.addtime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    now = datetime.now()
+    mo.time = str(now.hour) + ":" + str(now.minute)
+    print("保存数据到数据库")
+    ob.save()
+    mo.host_id = ob.id;
+    mo.save()
+    print("成功保存一组数据到数据库")
+    context['cpu_percent'] = cpu_percent
+    context['vir_mem_used'] = vir_mem_percent
+    context['mem_used'] = dick_mem_percent
+    gets = Monitor.objects.filter(host_id=ob.id)
+    length = len(gets)
+    cpu_data = []
+    vir_mem_data = []
+    time = []
+    for one in gets:
+        addtime = one.time
+        cpu_data.append(one.cpu_used)
+        vir_mem_data.append(one.vir_mem_used)
+        time.append(addtime)
+    time = json.dumps(time)
+    print(time)
+    time = re.findall(r'"(.*?)"',time)
+    print(time)
+    context['cpu_data'] = cpu_data
+    context['vir_mem_data'] = vir_mem_data
+    context['time'] = time
+    print(context)
     return render(request,"detail.html",context)
 
 def add(request):

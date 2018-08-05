@@ -36,6 +36,7 @@ class Monitor(models.Model):
     vir_mem_used = models.CharField(max_length=32)
     mem_used = models.CharField(max_length=32)
     addtime = models.DateTimeField(default=datetime.now)
+    time = models.CharField(max_length=50)
 
     class Meta:
         db_table = "monitor"  # 更改表名

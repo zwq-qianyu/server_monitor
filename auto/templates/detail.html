@@ -72,6 +72,21 @@
 		<div class="echart" id="vir_mem">
 			<!-- 百度图表页 -->
 			<script type="text/javascript">
+				var vir_mem_data = []
+				var k = 0
+				{% for i in vir_mem_data %}
+					vir_mem_data[k] = parseFloat('{{ i }}');
+					k++;
+				{% endfor %}
+				console.log(vir_mem_data);
+
+				var time = []
+				var j = 0
+				{% for i in time %}
+					time[j] = '{{ i }}';
+					j++;
+				{% endfor %}
+				console.log(time);
 		        // 基于准备好的dom，初始化echarts实例
 		        var myChart = echarts.init(document.getElementById('vir_mem'));
 
@@ -79,14 +94,15 @@
 		        var option = {
 				    xAxis: {
 				        type: 'category',
-				        data: []
+				        data: time
 				    },
 				    yAxis: {
 				        type: 'value'
 				    },
 				    series: [{
-				        data: '{{ vir_mem_data }}',
+				        data: vir_mem_data,
 				        type: 'line',
+				        smooth: true
 				    }]
 				};
 
@@ -97,8 +113,22 @@
 		<div class="echart" id="mem">
 			<!-- 百度图表页 -->
 			<script type="text/javascript">
-				var cpu = '{{ cpu_data }}';
-				console.log(cpu);
+				var cpu_data = []
+				var k = 0
+				{% for i in cpu_data %}
+					cpu_data[k] = parseFloat('{{ i }}');
+					k++;
+				{% endfor %}
+				console.log(cpu_data);
+
+				var time = []
+				var j = 0
+				{% for i in time %}
+					time[j] = '{{ i }}';
+					j++;
+				{% endfor %}
+				console.log(time);
+
 		        // 基于准备好的dom，初始化echarts实例
 		        var myChart = echarts.init(document.getElementById('mem'));
 
@@ -106,14 +136,15 @@
 		        var option = {
 				    xAxis: {
 				        type: 'category',
-				        data: []
+				        data: time
 				    },
 				    yAxis: {
 				        type: 'value'
 				    },
 				    series: [{
-				        data: '{{ cpu_data }}',
+				        data: cpu_data,
 				        type: 'line',
+				        smooth: true
 				    }]
 				};
 
