@@ -3,14 +3,21 @@
 可登陆管理自己的多台服务器，实现实时监控。
 后端使用Django框架。
 
+部分运行图可在该项目的source目录中下载。
+
+
 ### 运行首页如图：
 
 <img src="./source/index.png">
 
+### 详情页如图：
+
+<img src="./source/detail.png">
 
 ### 使用方法：
 首先导入 auto.sql 数据库或执行 create_monitor.sql 中的部分代码生成数据库。<br>
 然后需要对 settings 文件进行数据库配置。<br>
+如果是使用的 auto.sql 导入数据库，
 最后：
 <img src="./source/use.png">
 
@@ -26,5 +33,5 @@ Python3
 
 详细实现过程过一段时间可以看我博客：https://www.runtofuture.cn 
 
-今天实验时不小心删除了Nginx环境，导致今晚无法将实现过程写在博客上了，有时间我会补上。
+最近较忙，有时间将这个项目的思路写在博客上。
 
