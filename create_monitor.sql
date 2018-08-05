@@ -28,7 +28,8 @@ create table monitor(
 	cpu_used varchar(32),
 	vir_mem_used varchar(32),
 	mem_used varchar(32),
-	addtime datetime default null
+	addtime datetime default null,
+	time varchar(50) default null
 )AUTO_INCREMENT=2;
 
 show databases;
