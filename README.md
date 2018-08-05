@@ -9,12 +9,10 @@
 ### 运行首页如图：
 
 ![](https://github.com/zwq-qianyu/server_monitor/raw/master/source/index.png)  
-<img src="./source/index.png">
 
 ### 详情页如图：
 
 ![](https://github.com/zwq-qianyu/server_monitor/raw/master/source/detail.png)  
-<img src="./source/detail.png">
 
 ### 使用方法：
 首先导入 auto.sql 数据库或执行 create_monitor.sql 中的部分代码生成数据库。<br>
@@ -24,7 +22,6 @@
 
 最后：
 ![](https://github.com/zwq-qianyu/server_monitor/raw/master/source/use.png)  
-<img src="./source/use.png">
 
 ### 运行环境：
 Python3
@@ -32,7 +29,6 @@ Python3
 ### 安全性：
 采用hash算法加密用户密码，数据库user数据表案例如图：
 ![](https://github.com/zwq-qianyu/server_monitor/raw/master/source/safe.png)  
-<img src="./source/safe.png">
 
 #### 注意：
 添加管理的服务器必须要支持Python3可以正常添加进行管理
