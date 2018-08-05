@@ -8,17 +8,22 @@
 
 ### 运行首页如图：
 
+![](https://github.com/zwq-qianyu/server_monitor/raw/master/source/index.png)  
 <img src="./source/index.png">
 
 ### 详情页如图：
 
+![](https://github.com/zwq-qianyu/server_monitor/raw/master/source/detail.png)  
 <img src="./source/detail.png">
 
 ### 使用方法：
 首先导入 auto.sql 数据库或执行 create_monitor.sql 中的部分代码生成数据库。<br>
 然后需要对 settings 文件进行数据库配置。<br>
-如果是使用的 auto.sql 导入数据库，
+如果是使用的 auto.sql 导入数据库，可以使用 ziyichen 登录进行测试，密码为 123456
+
+
 最后：
+![](https://github.com/zwq-qianyu/server_monitor/raw/master/source/use.png)  
 <img src="./source/use.png">
 
 ### 运行环境：
@@ -26,6 +31,7 @@ Python3
 
 ### 安全性：
 采用hash算法加密用户密码，数据库user数据表案例如图：
+![](https://github.com/zwq-qianyu/server_monitor/raw/master/source/safe.png)  
 <img src="./source/safe.png">
 
 #### 注意：
